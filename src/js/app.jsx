@@ -40,9 +40,12 @@ export default class App extends React.Component {
       this.state.interestRate,
       this.state.loanTerm,
       this.state.period)
-    let monthlyPayment = mortgage.monthlyPayment()
-    let monthly = document.getElementById('output')
-    monthly.innerText = "$" + monthlyPayment.toFixed(2)
+    let monthlyPayment = mortgage.calcMonthPay()
+    // console.log(mortgage)
+    this.setState({monthlyPayment});
+
+    // let monthly = document.getElementById('output')
+    // monthly.innerText = "$" + monthlyPayment.toFixed(2)
   }
 
   render() {
@@ -57,7 +60,7 @@ export default class App extends React.Component {
           <option value='4'>Quarterly</option>
         </select>
         <button onClick={this.calculateMonthlyPayment} id='calculate' >Calculate</button>
-        <p id='output'></p>
+        <p id='output'>${this.state.monthlyPayment}</p>
       </div>
     );
   }
